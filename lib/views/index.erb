@@ -1,0 +1,17 @@
+<html>
+  <head>
+    <title>The Gossip Project</title>
+  </head>
+  <body>
+    <h1>Mon super site de gossip, depuis le dossier views !</h1>
+    <a href="/gossips/new/">Add gossip here</a>
+    
+    <% gossips.each do |gossip| %> 
+      <p>
+        <%= gossip.author %><br/>
+        <%= gossip.content %>
+      </p>
+    <% end %>
+    <!-- les balise <% 'code ruby' %> permet d'utiliser du ruby dans un fichier html -->
+  </body>
+</html>
