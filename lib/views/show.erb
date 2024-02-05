@@ -7,11 +7,25 @@
     <p>
       Son auteur : == <%= gossip_author %> ==<br/>
       Le contenu du potin : == <%= gossip_content %> ==<br/>
-      
     </p>
-
     <a href="/gossips/<%=params[:id] %>/edit/">Editer le potin</a> <br/>
-
     <a href="/">Lien pour revenir à la page des potins</a> <br/>
+
+    <section>
+      <h3>Laisse un commentaire sur ce potin</h3>
+      <form action='/gossips/<%=params[:id] %>/' method='POST'>
+      Saisi ici ton nom :  <input type='text' name='comment_author'/><br/>
+      Balance ton commentaire : <input type='text' name='comment_content'/><br/>
+      <input type='submit'/>
+      </form>
+    </section>
+    
+    <section>
+      <h3>Voici les commentaires sur ce potin</h3>
+      <% comments.each do |comment| %> <% #comments est un tableau d'objet ! %>        
+        <%= comment.author %> : <%= comment.content %><br/>        
+      <% end %>
+    </section>     
+
   </body>
 </html>
