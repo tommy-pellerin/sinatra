@@ -3,7 +3,7 @@ Bundler.require
 
 class Gossip
   attr_accessor :author, :content
-  
+
   def initialize(auteur,contenu)
     @author = auteur
     @content = contenu
@@ -23,6 +23,14 @@ class Gossip
     
     return all_gossips #Attention on retourne un array rempli d'objets Gossip, ce sont des objets sous forme #<Gossip:0x00007f221578bb60> qu'il faudra traduire en string
   end
-  
+
+  def self.find(id)
+    csv_data = CSV.read("./db/gossip.csv") # créer un tableau avec l'ensemble des données du csv
+    return csv_data[id.to_i].join(", ") #retourne un array ["author","content"]
+
+  end
+  # binding.pry
 end
+
+
 
