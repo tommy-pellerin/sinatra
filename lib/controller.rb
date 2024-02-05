@@ -2,7 +2,7 @@ require 'gossip'
 
 class ApplicationController < Sinatra::Base
   get '/' do #dirigier à la page d'acceuil index
-    erb :index, locals: {gossips: Gossip.all} #créer un variable local gossips
+    erb :index, locals: {gossips: Gossip.all} #créer une variable local gossips
   end
 
   get '/gossips/new/' do #diriger à la page de formulaire new_gossip
@@ -15,13 +15,17 @@ class ApplicationController < Sinatra::Base
     redirect '/' #une fois le formulaire soumit redirige à la page index
   end
 
-  get '/gossips/:id' do
+  # get '/gossips/:id' do
     
-    "Voici le numéro du potin que tu veux : #{params['id']}!"
-    puts "Je rentre dans la page #{params['id']}"
-    Gossip.find(params['id'])
-  end
+  #   # "Voici le numéro du potin que tu veux : #{params['id']}!"
+  #   puts "Je rentre dans la page #{params['id']}"
+  #   Gossip.find(params['id'])
+  # end
 
+  get '/gossips/:id' do #diriger à la page show
+    puts "Je rentre dans la page #{params['id']}"
+    erb :show, locals: {gossip_author: Gossip.find(params['id'])[0],gossip_content: Gossip.find(params['id'])[1]} #créer une variable local gossips
+  end
 
   
 

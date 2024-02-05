@@ -4,18 +4,26 @@
   </head>
   <body>
     <h1>Mon super site de gossip, depuis le dossier views !</h1>
-    <a href="/gossips/new/">Add gossip here</a> <br/>
+    <a href="/gossips/new/">Add gossip here</a> <br/> <br/>
+
+    <!--
     <a href="/gossips/1">See your 1st gossip here</a> <br/>
     <a href="/gossips/2">See your 2nd gossip here</a> <br/>
     <a href="/gossips/3">See your 3th gossip here</a> <br/>
     <a href="/gossips/13">See your 13th gossip here</a> <br/>
+    -->
     
-    <% gossips.each do |gossip| %> 
-      <p>
-        <%= gossip.author %><br/>
-        <%= gossip.content %>
-      </p>
-    <% end %>
     <!-- les balise <% 'code ruby' %> permet d'utiliser du ruby dans un fichier html -->
+    <!-- Par contre <%= %> va te servir à afficher un string Ruby qui est entre ces balises (c'est l'équivalent d'un, puts mais sur du HTML) -->
+
+    <% gossips.each_with_index do |gossip,index| %> <% #gossips est un tableau d'objet ! %>
+      <a href="/gossips/<%=index %>">
+        <%=index %> - <%= gossip.author %> : <%= gossip.content %><br/><br/>
+        
+      </a>
+      
+    <% end %> 
+
+
   </body>
 </html>

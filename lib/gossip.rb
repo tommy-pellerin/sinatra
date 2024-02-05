@@ -26,7 +26,7 @@ class Gossip
 
   def self.find(id)
     csv_data = CSV.read("./db/gossip.csv") # créer un tableau avec l'ensemble des données du csv
-    return csv_data[id.to_i].join(", ") #retourne un array ["author","content"]
+    return csv_data[id.to_i] #retourne un array ["author","content"]
 
   end
   # binding.pry
