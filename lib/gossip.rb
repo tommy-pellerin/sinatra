@@ -29,7 +29,24 @@ class Gossip
     return csv_data[id.to_i] #retourne un array ["author","content"]
 
   end
-  # binding.pry
+
+  def self.update(new_author, new_content, ligne_number)
+    csv_data = CSV.read('db/gossip.csv')
+    ligne_to_modify = ligne_number.to_i
+    
+    new_gossip = [new_author, new_content]
+    puts "voici la ligne à modifier dans le csv: #{ligne_to_modify}"
+    puts "Voici le nouveau gossip : #{new_gossip}"
+    csv_data[ligne_to_modify] = new_gossip
+    p csv_data
+    CSV.open('db/gossip.csv', 'w') do |csv|
+      csv_data.each do |row|
+        csv << row
+      end
+    end
+    
+  end #fin de la méthode
+  
 end
 
 

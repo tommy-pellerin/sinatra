@@ -17,13 +17,13 @@
     <!-- Par contre <%= %> va te servir à afficher un string Ruby qui est entre ces balises (c'est l'équivalent d'un, puts mais sur du HTML) -->
 
     <% gossips.each_with_index do |gossip,index| %> <% #gossips est un tableau d'objet ! %>
-      <a href="/gossips/<%=index %>">
+      <a href="/gossips/<%=index %>/">
         <%=index %> - <%= gossip.author %> : <%= gossip.content %><br/><br/>
         
       </a>
       
     <% end %> 
-
+    
 
   </body>
 </html>

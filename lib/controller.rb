@@ -15,18 +15,22 @@ class ApplicationController < Sinatra::Base
     redirect '/' #une fois le formulaire soumit redirige à la page index
   end
 
-  # get '/gossips/:id' do
-    
-  #   # "Voici le numéro du potin que tu veux : #{params['id']}!"
-  #   puts "Je rentre dans la page #{params['id']}"
-  #   Gossip.find(params['id'])
-  # end
-
-  get '/gossips/:id' do #diriger à la page show
-    puts "Je rentre dans la page #{params['id']}"
+  get '/gossips/:id/' do #diriger à la page show
+    puts "Je rentre dans la page gossip: #{params['id']}"
     erb :show, locals: {gossip_author: Gossip.find(params['id'])[0],gossip_content: Gossip.find(params['id'])[1]} #créer une variable local gossips
   end
 
+  get '/gossips/:id/edit/' do #diriger à la page de formulaire edit
+    erb :edit_gossip
+  end
   
+  post '/gossips/:id/edit/' do #récupere les informations du formulaire de la page edit
+    
+    puts "Je rentre dans la page edit: #{params['id']}"
+    Gossip.update(params["new_gossip_author"],params["new_gossip_content"],params['id']) #la route post va récupérer depuis le formulaire, le name ="gossip_author" automatiquement et l'injecter dans la création de l'instance 
+    redirect '/' #une fois le formulaire soumit redirige à la page index
+  end
+  
+  binding
 
 end
